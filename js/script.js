@@ -3,13 +3,8 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// For assistance: 
-// Check the "Project Resources" section of the project instructions
-// Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
-/*** 
- * `quotes` array 
- ***/
+// Array of quote objects
 quotes = [{
     quote: "Numbing the pain for a while will make it worse when you finally feel it.",
     source: "Albus Dumbledore",
@@ -45,18 +40,18 @@ quotes = [{
 ];
 
 
-
+// Function that gets a random quote object.
 function getRandomQuote() {
   var randomQuote = Math.floor(Math.random() * quotes.length);
   return quotes[randomQuote];
 }
 
-
+// functionn that displays the quotes inc source and citatio, year and/or mood if avalible.
 function printQuote() {
   var quotes = getRandomQuote();
   var html = "";
 
-  // Code credits go to: https://dev.to/akhil_001/generating-random-color-with-single-line-of-js-code-fhj
+  // Code credits go to: https://dev.to/akhil_001/generating-random-color-with-single-line-of-js-code-fhj.
   var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
 
   html += `<p class = "quote" > ${quotes.quote} </p>`;
@@ -74,14 +69,10 @@ function printQuote() {
   return document.getElementById('quote-box').innerHTML = html, document.querySelector("body").style.backgroundColor = randomColor;
 }
 
-function myFunction() {
-  myVar = setInterval(printQuote, 3000);
+// Function that shows a new quote every 5 seconds
+function rotateQuotes() {
+  nextQuote = setInterval(printQuote, 5000);
 }
-
-myFunction();
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
- ***/
+rotateQuotes();
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
