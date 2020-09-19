@@ -38,42 +38,47 @@ quotes = [{
   {
     quote: "Always",
     source: "Severus Snape",
-    citation: "the Deathly Hallows: Part 1"
-    // year: "2010"
+    citation: "the Deathly Hallows: Part 1",
+    year: 2010,
+    mood: ". Hardest part in the movie"
   }
 ];
 
-/***
- * `getRandomQuote` function
- ***/
+
 
 function getRandomQuote() {
-  var randomQuote = Math.floor(Math.random() * quotes.length + 1);
+  var randomQuote = Math.floor(Math.random() * quotes.length);
   return quotes[randomQuote];
 }
 
 
-
-/***
- * `printQuote` function
- ***/
-
 function printQuote() {
-  var rngQuote = getRandomQuote();
+  var quotes = getRandomQuote();
   var html = "";
-  html += `<p class = "quote" > ${rngQuote.quote} </p>`;
-  html += `<p class = "source" > ${rngQuote.source}`;
-  if (rngQuote.citation) {
-    html += `<span class = "citation" > ${rngQuote.citation} </span>`;
+
+  // Code credits go to: https://dev.to/akhil_001/generating-random-color-with-single-line-of-js-code-fhj
+  var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+
+  html += `<p class = "quote" > ${quotes.quote} </p>`;
+  html += `<p class = "source" > ${quotes.source}`;
+  if (quotes.citation) {
+    html += `<span class = "citation" > ${quotes.citation} </span>`;
   }
-  if (rngQuote.year) {
+  if (quotes.year) {
     html += `<span class = "year" > ${quotes.year} <span>`;
   }
+  if (quotes.mood) {
+    html += `<span class = "sad" > ${quotes.mood} <span>`;
+  }
   html += ` </p>`;
-  return document.getElementById('quote-box').innerHTML = html;
+  return document.getElementById('quote-box').innerHTML = html, document.querySelector("body").style.backgroundColor = randomColor;
 }
 
+function myFunction() {
+  myVar = setInterval(printQuote, 3000);
+}
 
+myFunction();
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
